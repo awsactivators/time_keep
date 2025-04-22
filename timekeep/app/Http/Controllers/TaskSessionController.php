@@ -12,12 +12,12 @@ class TaskSessionController extends Controller
     public function index(Task $task)
     {
         $sessions = $task->sessions()->orderBy('date', 'desc')->get();
-        return view('tasks.sessions.index', compact('task', 'sessions'));
+        return view('sessions.index', compact('task', 'sessions'));
     }
 
     public function create(Task $task)
     {
-        return view('tasks.sessions.create', compact('task'));
+        return view('sessions.create', compact('task'));
     }
 
     public function store(Request $request, Task $task)
@@ -58,9 +58,9 @@ class TaskSessionController extends Controller
 
     public function edit(Task $task, TaskSession $session)
     {
-        return view('tasks.sessions.edit', compact('task', 'session'));
+        return view('sessions.edit', compact('task', 'session'));
     }
-    
+
 
     public function update(Request $request, Task $task, TaskSession $session)
     {

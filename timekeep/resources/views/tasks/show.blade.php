@@ -8,7 +8,7 @@
         <p><strong>Project:</strong> {{ $task->project->name ?? 'N/A' }}</p>
         <p><strong>Description:</strong> {{ $task->description }}</p>
         <p><strong>Date:</strong> {{ $task->date }}</p>
-        <p><strong>Time:</strong> {{ $task->start_time }} - {{ $task->end_time }}</p>
+        {{-- <p><strong>Time:</strong> {{ $task->start_time }} - {{ $task->end_time }}</p> --}}
         <p><strong>Status:</strong> {{ $task->status }}</p>
         <p><strong>Notes:</strong> {{ $task->notes }}</p>
         <p><strong>Link:</strong> <a href="{{ $task->link }}" target="_blank">Visit</a></p>

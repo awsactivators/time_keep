@@ -25,14 +25,14 @@
         <label class="form-label">Date</label>
         <input type="date" name="date" class="form-control" value="{{ $task->date ?? '' }}">
     </div>
-    <div class="mb-3">
+    {{-- <div class="mb-3">
         <label class="form-label">Start Time</label>
         <input type="time" name="start_time" class="form-control" value="{{ $task->start_time ?? '' }}">
     </div>
     <div class="mb-3">
         <label class="form-label">End Time</label>
         <input type="time" name="end_time" class="form-control" value="{{ $task->end_time ?? '' }}">
-    </div>
+    </div> --}}
     <div class="mb-3">
         <label class="form-label">Notes</label>
         <textarea name="notes" class="form-control">{{ $task->notes ?? '' }}</textarea>
