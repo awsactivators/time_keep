@@ -33,4 +33,7 @@
 @else
     <p>No tasks logged yet for this project.</p>
 @endif
+
+<a href="{{ route('projects.index') }}" class="btn btn-secondary mt-3">Back to Project List</a>
+
 @endsection

@@ -55,4 +55,38 @@ class TaskSessionController extends Controller
         return redirect()->route('task-sessions.index', $task->id)
                          ->with('success', 'Session deleted.');
     }
+
+    public function edit(Task $task, TaskSession $session)
+    {
+        return view('tasks.sessions.edit', compact('task', 'session'));
+    }
+    
+
+    public function update(Request $request, Task $task, TaskSession $session)
+    {
+        $request->validate([
+            'date' => 'required|date',
+            'start_time' => 'nullable|date_format:H:i',
+            'end_time' => 'nullable|date_format:H:i|after_or_equal:start_time',
+            'notes' => 'nullable|string',
+        ]);
+
+        $timeSpent = null;
+        if ($request->start_time && $request->end_time) {
+            $start = strtotime($request->start_time);
+            $end = strtotime($request->end_time);
+            $timeSpent = round(($end - $start) / 3600, 2);
+        }
+
+        $session->update([
+            'date' => $request->date,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+            'time_spent' => $timeSpent,
+            'notes' => $request->notes,
+        ]);
+
+        return redirect()->route('task-sessions.index', $task->id)->with('success', 'Session updated.');
+    }
+
 }

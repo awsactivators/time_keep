@@ -12,6 +12,8 @@
                 <p><strong>Start:</strong> {{ $session->start_time }} | <strong>End:</strong> {{ $session->end_time }}</p>
                 <p><strong>Time Spent:</strong> {{ $session->time_spent }} hrs</p>
                 <p><strong>Notes:</strong> {{ $session->notes }}</p>
+                <a href="{{ route('task-sessions.edit', [$task->id, $session->id]) }}" class="btn btn-sm btn-secondary">Edit</a>
+
                 <form action="{{ route('task-sessions.destroy', [$task->id, $session->id]) }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -23,4 +25,7 @@
 @else
     <p>No sessions logged yet for this task.</p>
 @endif
+
+<a href="{{ route('tasks.show', $task->id) }}" class="btn btn-secondary mt-3">Back to Task Details</a>
+
 @endsection

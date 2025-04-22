@@ -25,5 +25,7 @@ method="POST">
         <textarea name="notes" class="form-control" rows="3"></textarea>
     </div>
     <button type="submit" class="btn btn-success">Log Session</button>
+    <a href="{{ route('task-sessions.index', $task->id) }}" class="btn btn-secondary mt-3">Back to Sessions</a>
+
 </form>
 @endsection

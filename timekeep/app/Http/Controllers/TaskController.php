@@ -72,7 +72,9 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        // Fetch the task with its project and sessions
+        $task->load('project', 'sessions');
+        return view('tasks.show', compact('task'));
     }
 
     /**

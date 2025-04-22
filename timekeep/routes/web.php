@@ -28,6 +28,8 @@ Route::prefix('tasks/{task}/sessions')->group(function () {
     Route::get('/', [TaskSessionController::class, 'index'])->name('task-sessions.index');
     Route::get('/create', [TaskSessionController::class, 'create'])->name('task-sessions.create');
     Route::post('/', [TaskSessionController::class, 'store'])->name('task-sessions.store');
+    Route::get('/{session}/edit', [TaskSessionController::class, 'edit'])->name('task-sessions.edit');
+    Route::put('/{session}', [TaskSessionController::class, 'update'])->name('task-sessions.update');
     Route::delete('/{session}', [TaskSessionController::class, 'destroy'])->name('task-sessions.destroy');
 });
 

@@ -43,5 +43,11 @@ class Task extends Model
         return $this->hasMany(TaskSession::class);
     }
 
+    public function getTotalSessionHoursAttribute()
+    {
+        return $this->sessions->sum('time_spent');
+    }
+
+
     
 }
