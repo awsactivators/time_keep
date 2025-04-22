@@ -24,5 +24,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('tasks', TaskController::class);
 });
 
+Route::prefix('tasks/{task}/sessions')->group(function () {
+    Route::get('/', [TaskSessionController::class, 'index'])->name('task-sessions.index');
+    Route::get('/create', [TaskSessionController::class, 'create'])->name('task-sessions.create');
+    Route::post('/', [TaskSessionController::class, 'store'])->name('task-sessions.store');
+    Route::delete('/{session}', [TaskSessionController::class, 'destroy'])->name('task-sessions.destroy');
+});
+
+
 
 require __DIR__.'/auth.php';

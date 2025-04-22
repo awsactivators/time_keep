@@ -37,5 +37,11 @@ class Task extends Model
     public function project() {
         return $this->belongsTo(Project::class);
     }
+
+    public function sessions()
+    {
+        return $this->hasMany(TaskSession::class);
+    }
+
     
 }

@@ -45,8 +45,15 @@ class ProjectController extends Controller
         // The StoreProjectRequest will handle the validation
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'project_type' => 'nullable|string|max:100',
+            'start_date' => 'nullable|date',
+            'due_date' => 'nullable|date|after_or_equal:start_date',
+            'status' => 'required|string|in:pending,in-progress,completed',
+            'link' => 'nullable|url',
             'client_name' => 'nullable|string|max:255',
-            'status' => 'required|string',
+            'notes' => 'nullable|string',
+            'price_per_hour' => 'nullable|numeric|min:0',
         ]);
 
         $validated['user_id'] = Auth::id();
@@ -60,7 +67,9 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        // Fetch the project with its tasks
+        $project->load('tasks');
+        return view('projects.show', compact('project'));
     }
 
     /**
@@ -81,8 +90,15 @@ class ProjectController extends Controller
         // The UpdateProjectRequest will handle the validation
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'project_type' => 'nullable|string|max:100',
+            'start_date' => 'nullable|date',
+            'due_date' => 'nullable|date|after_or_equal:start_date',
+            'status' => 'required|string|in:pending,in-progress,completed',
+            'link' => 'nullable|url',
             'client_name' => 'nullable|string|max:255',
-            'status' => 'required|string',
+            'notes' => 'nullable|string',
+            'price_per_hour' => 'nullable|numeric|min:0',
         ]);
 
         $project->update($validated);

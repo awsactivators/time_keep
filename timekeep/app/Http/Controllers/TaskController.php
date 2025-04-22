@@ -45,11 +45,15 @@ class TaskController extends Controller
         // and the validation rules
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
             'project_id' => 'required|exists:projects,id',
             'date' => 'nullable|date',
-            'start_time' => 'nullable',
-            'end_time' => 'nullable',
-            'status' => 'required|string',
+            'start_time' => 'nullable|date_format:H:i',
+            'end_time' => 'nullable|date_format:H:i|after_or_equal:start_time',
+            'time_spent' => 'nullable|numeric|min:0',
+            'status' => 'required|string|in:incomplete,complete',
+            'notes' => 'nullable|string',
+            'link' => 'nullable|url',
         ]);
 
         $validated['user_id'] = Auth::id();
@@ -96,11 +100,15 @@ class TaskController extends Controller
         // and the validation rules
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
             'project_id' => 'required|exists:projects,id',
             'date' => 'nullable|date',
-            'start_time' => 'nullable',
-            'end_time' => 'nullable',
-            'status' => 'required|string',
+            'start_time' => 'nullable|date_format:H:i',
+            'end_time' => 'nullable|date_format:H:i|after_or_equal:start_time',
+            'time_spent' => 'nullable|numeric|min:0',
+            'status' => 'required|string|in:incomplete,complete',
+            'notes' => 'nullable|string',
+            'link' => 'nullable|url',
         ]);
 
         if ($request->start_time && $request->end_time) {
